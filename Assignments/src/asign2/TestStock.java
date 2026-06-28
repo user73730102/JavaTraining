@@ -1,4 +1,4 @@
-package com.mmcoe.stock;
+package asign2;
 
 public class TestStock {
 	public static void main(String[] args) {
