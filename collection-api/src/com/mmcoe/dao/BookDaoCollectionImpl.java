@@ -4,13 +4,17 @@ import java.util.List;
 import java.util.Vector;
 
 import com.mmcoe.pojo.Book;
+import com.mmcoe.service.BookNotFoundException;
 
 public class BookDaoCollectionImpl implements BookDao {
 
 	private List<Book> books;
 	
 	public BookDaoCollectionImpl(List<Book> books) {
-		books=new Vector<Book>();
+		this.books = books;
+	}
+	public BookDaoCollectionImpl() {
+		this.books = new Vector<Book>();
 	}
 
 	@Override
@@ -21,13 +25,13 @@ public class BookDaoCollectionImpl implements BookDao {
 	}
 
 	@Override
-	public Book find(int isbn) {
+	public Book find(int isbn) throws BookNotFoundException {
 		// TODO Auto-generated method stub
 		for (Book book : books) {
 			if(book.getIsbn()==isbn)
 				return book;
 		}
-		return null;
+		throw new BookNotFoundException("Book not found");
 	}
 
 	@Override
@@ -48,6 +52,18 @@ public class BookDaoCollectionImpl implements BookDao {
 		return false;
 	}
 
-	
+	@Override
+	public List<Book> findByPrice(double min, double max) {
+		// TODO Auto-generated method stub
+		List<Book> res=new Vector<Book>();
+		for (Book book : books) {
+			if(book.getPrice()>=min && book.getPrice()<=max) {
+				res.add(book);
+			}
+		}
+		if(res.size()==0)
+				return null;
+		return res;
+	}
 	
 }

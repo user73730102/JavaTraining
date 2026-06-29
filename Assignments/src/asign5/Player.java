@@ -1,25 +1,31 @@
 package asign5;
 
-/**
- * Represents a Player in the bidding system.
- */
 public class Player {
-    private final String name;
-    private final double biddingAmount; // In Millions
+    private int jerseyNo;
+    private String name;
+    private String role;
+    private double biddingAmount; 
 
-    public Player(String name, double biddingAmount) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Player name cannot be null or empty.");
-        }
+    public Player(int jerseyNo, String name, String role, double biddingAmount) {
         if (biddingAmount < 0) {
-            throw new IllegalArgumentException("Bidding amount cannot be negative.");
+            throw new IllegalArgumentException("Bidding amount cannot be negative");
         }
+        this.jerseyNo = jerseyNo;
         this.name = name;
+        this.role = role;
         this.biddingAmount = biddingAmount;
+    }
+
+    public int getJerseyNo() {
+        return jerseyNo;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public double getBiddingAmount() {
@@ -28,6 +34,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.format("%-20s : $%.2f Million", name, biddingAmount);
+        return "#" + jerseyNo + " " + name + " (" + role + ") : $" + biddingAmount + " Million";
     }
 }
