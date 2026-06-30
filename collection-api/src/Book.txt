@@ -1,0 +1,5 @@
+12, harry potter, jk rowling, 1000
+13, python, balguri, 2000
+15, java, sherlock holmes, 1500
+16, data structures, balguri, 1700
+17, sql, gaurav, 1800

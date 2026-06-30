@@ -1,0 +1,6 @@
+765, Jet, Kochi, Kolkata
+123, kingfisher, Delhi, Banglore
+789, airindia, Mumbai, chennai
+234, spicejet, Hyd, Vizag
+909, indigo, Hyd, Bangalore
+890, Vistara, Banglore, Delhi
