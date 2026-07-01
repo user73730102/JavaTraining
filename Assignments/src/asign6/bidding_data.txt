@@ -1,0 +1,12 @@
+TEAM,mi,Mumbai Indians,Mumbai
+TEAM,csk,Chennai Super Kings,Chennai
+TEAM,rcb,Royal Challengers Bangalore,Bangalore
+PLAYER,mi,45,Rohit Sharma,Batter,16.0
+PLAYER,mi,93,Jasprit Bumrah,Bowler,12.0
+PLAYER,mi,63,Suryakumar Yadav,Batter,8.0
+PLAYER,csk,7,MS Dhoni,Wicketkeeper Batter,12.0
+PLAYER,csk,8,Ravindra Jadeja,All-rounder,16.0
+PLAYER,csk,31,Ruturaj Gaikwad,Batter,6.0
+PLAYER,rcb,18,Virat Kohli,Batter,15.0
+PLAYER,rcb,32,Glenn Maxwell,All-rounder,11.0
+PLAYER,rcb,13,Faf du Plessis,Batter,7.0
