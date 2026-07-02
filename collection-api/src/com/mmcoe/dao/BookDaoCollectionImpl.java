@@ -1,69 +1,57 @@
 package com.mmcoe.dao;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Vector;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.mmcoe.pojo.Book;
-import com.mmcoe.service.BookNotFoundException;
 
 public class BookDaoCollectionImpl implements BookDao {
-
 	private List<Book> books;
 	
-	public BookDaoCollectionImpl(List<Book> books) {
-		this.books = books;
-	}
 	public BookDaoCollectionImpl() {
-		this.books = new Vector<Book>();
+		Stream<String> lines = null;
+		try {
+			lines = Files.lines(Paths.get("src/books.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		books = lines.map(line -> {
+			String[] record = line.split(",");
+			return new Book(Integer.parseInt(record[0]), record[1], record[2], 
+					Double.parseDouble(record[3]));
+		}).collect(Collectors.toList());
 	}
-
+	
 	@Override
 	public boolean save(Book b) {
-		// TODO Auto-generated method stub
 		books.add(b);
 		return true;
 	}
 
 	@Override
-	public Book find(int isbn) throws BookNotFoundException {
-		// TODO Auto-generated method stub
-		for (Book book : books) {
-			if(book.getIsbn()==isbn)
-				return book;
-		}
-		throw new BookNotFoundException("Book not found");
+	public Optional<Book> find(int isbn) {
+		return books.stream().filter(b -> b.getIsbn() == isbn).findFirst();
 	}
 
 	@Override
 	public List<Book> list() {
-		// TODO Auto-generated method stub
 		return books;
 	}
 
 	@Override
 	public boolean delete(int isbn) {
-		// TODO Auto-generated method stub
-		for (Book book : books) {
-			if(book.getIsbn()==isbn) {
-				books.remove(book);
-				return true;
-			}
-		}
-		return false;
+		return books.removeIf(b -> b.getIsbn() == isbn);
 	}
 
 	@Override
 	public List<Book> findByPrice(double min, double max) {
-		// TODO Auto-generated method stub
-		List<Book> res=new Vector<Book>();
-		for (Book book : books) {
-			if(book.getPrice()>=min && book.getPrice()<=max) {
-				res.add(book);
-			}
-		}
-		if(res.size()==0)
-				return null;
-		return res;
+		return books.stream().filter(b -> b.getPrice() > min && b.getPrice() < max)
+				.collect(Collectors.toList());
 	}
-	
 }
