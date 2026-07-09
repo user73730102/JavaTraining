@@ -8,11 +8,24 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Context elements go here -->
+    <bean id="str" class="java.lang.String">
+    		<constructor-arg value="Aloha String"/>
+    </bean>
+    
+    <!--<bean id="hi" class="com.ex1.Hello">
+		<constructor-arg ref="str"/>
+	</bean>-->
+	
+	<bean id="hi" class="com.ex1.Hello">
+		<property name="message" ref="str"/>
+	</bean>
     <!--<bean id="hi" class="com.ex1.Hello"/>-->
 	<!--<bean id="hi" class="com.ex1.Hello">
 		<constructor-arg value="Hello Spring"/>
 	</bean>-->
-	<bean id="hi" class="com.ex1.Hello">
-		<constructor-arg value="Hola Spring"/>
-	</bean>
+	<!--<bean id="hi" class="com.ex1.Hello">
+		<property name="message" value="Hola Spring"/>
+	</bean>-->
+	
+	
 </beans>
